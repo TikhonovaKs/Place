@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="eng">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Place</title>
+    <link rel="stylesheet" href="pages/index.css" />
+  </head>
+  <body class="page">
+    <header class="header">
+      <img src="images/header-logo.svg" alt="Logo place" class="logo" />
+    </header>
+    <main>
+      <section class="profile">
+        <div class="profile__info">
+          <img class="profile__avatar" src="images/photo-cousteau.jpg" alt="User profile photo" />
+          <div class="profile__description">
+            <h1 class="profile__name">Kseniia T.</h1>
+            <button class="profile__edit-button" aria-label="Edit profile" type="button"></button>
+            <p class="profile__job">Frontend developer</p>
+          </div>
+        </div>
+        <button class="profile__add-button" aria-label="Add content to profile" type="button"></button>
+      </section>
+      <ul class="elements"></ul>
+    </main>
+    <footer class="footer">&copy; 2023 Place Sweden</footer>
+    <div class="popup popup_type_edit">
+      <div class="popup__container">
+        <button class="popup__button-close" aria-label="Close edit window" type="button"></button>
+        <h2 class="popup__title">Edit profile</h2>
+        <form class="popup__form" name="profile" novalidate>
+          <input
+            id="input-name" 
+            type="text" 
+            name="name" 
+            class="popup__input popup__input_data_name" 
+            required 
+            minlength="2" 
+            maxlength="40" 
+          />
+          <span id="input-name-error" class="error"></span>
+          <input 
+            id="input-job"
+            type="text" 
+            name="job" 
+            class="popup__input popup__input_data_job" 
+            required 
+            minlength="2" 
+            maxlength="200" 
+          />
+          <span id="input-job-error" class="error"></span>
+          <button type="submit" class="popup__button-save" aria-label="Save changes">Save</button>
+        </form>
+      </div>
+    </div>  
+    <div class="popup popup_type_card">
+      <div class="popup__container">
+        <button class="popup__button-close" aria-label="Close the window for adding new content" type="button"></button>
+        <h2 class="popup__title">New place</h2>
+        <form class="popup__form" name="profile" novalidate>
+          <input
+            id="input-place"
+            minlength="2"
+            maxlength="30"
+            type="text"
+            name="place"
+            placeholder="Название"
+            class="popup__input popup__input_data_place"
+            required
+          />
+          <span id="input-place-error" class="error"></span>
+          <input
+            id="input-link"
+            type="url"
+            name="link"
+            placeholder="Ссылка на картинку"
+            class="popup__input popup__input_data_link"
+            required
+          />
+          <span id="input-link-error" class="error"></span>
+          <button type="submit" class="popup__button-save" aria-label="Create">Create</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_type_image popup_overley_dark">
+      <div class="popup__container popup__container_type_image">
+        <button class="popup__button-close" aria-label="Close edit window" type="button"></button>
+        <img src="#" alt="#" class="popup__picture" />
+        <h3 class="popup__picture-title"></h3>
+      </div>
+    </div>
+    <template id="place-template">
+      <li class="element">
+        <img class="element__image" src="#" alt="#" />
+        <button class="element__trash-button" aria-label="Remove element" type="button"></button>
+        <div class="element__description">
+          <h2 class="element__name"></h2>
+          <button class="element__like-button" aria-label="Choose a favorite element" type="button"></button>
+        </div>
+      </li>
+    </template>
+    <script src="./scripts/validate.js"></script>
+    <script src="./scripts/cards.js"></script>
+    <script src="./scripts/index.js"></script>
+  </body>
+</html>
