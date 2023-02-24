@@ -43,4 +43,4 @@ Validation of the form "Edit profile" and "New location"
 * Use standard browser error texts.
 
 ### Link to GitHub Pages:
-* https://github.com/TikhonovaKs/Place.git
+* https://tikhonovaks.github.io/Place/
