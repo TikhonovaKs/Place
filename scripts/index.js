@@ -17,6 +17,8 @@ const placeCardTemplate = document.querySelector('#place-template').content;
 const cardPopup = document.querySelector('.popup_type_card');
 const cardNameInput = cardPopup.querySelector('.popup__input_data_place');
 const cardLinkInput = cardPopup.querySelector('.popup__input_data_link');
+const cardForm = cardPopup.querySelector('.popup__form');
+const popupPlaceSaveButton = cardPopup.querySelector('.popup__button-save');
 
 const imageZoomPopup = document.querySelector('.popup_type_image');
 const imageZoom = imageZoomPopup.querySelector('.popup__picture');
@@ -27,6 +29,7 @@ const imageZoomName = imageZoomPopup.querySelector('.popup__picture-title');
  */
 function openPopup(currentPopup) {
   currentPopup.classList.add('popup_is-opened');
+  document.addEventListener('keydown', closeByEscape);
 }
 
 /**
@@ -34,6 +37,7 @@ function openPopup(currentPopup) {
  */
 function closePopup(currentPopup) {
   currentPopup.classList.remove('popup_is-opened');
+  document.removeEventListener('keydown', closeByEscape);
 }
 
 /** Close popup with close button or overlay */
@@ -49,6 +53,17 @@ popupsList.forEach((popup) => {
 });
 
 /**
+ * Close popup with esc
+ * @param {*} evt
+ */
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_is-opened');
+    closePopup(openedPopup, formValidationConfig);
+  }
+}
+
+/**
  * Open profile edit popup
  */
 function openProfileEditPopup() {
@@ -59,6 +74,7 @@ function openProfileEditPopup() {
   profileJobInput.value = profileJobValue;
 
   openPopup(profileEditPopup);
+  toggleButton(profileForm, formValidationConfig);
 }
 profileEditButton.addEventListener('click', openProfileEditPopup);
 
@@ -85,6 +101,7 @@ profileForm.addEventListener('submit', handleFormSubmit);
  */
 function openAddPlacePopup() {
   openPopup(cardPopup);
+  toggleButton(cardForm, formValidationConfig);
 }
 profileAddPlaceButton.addEventListener('click', openAddPlacePopup);
 
@@ -133,6 +150,26 @@ function addPlace(place) {
   const newPlace = createSinglePlace(place);
   cardsContainer.prepend(newPlace);
 }
+
+/**
+ * Handle events for adding new elements
+ * @param {*} evt
+ */
+function handleAddPlace(evt) {
+  evt.preventDefault();
+
+  const placeInputValue = cardNameInput.value;
+  const linkInputValue = cardLinkInput.value;
+  const place = {};
+  place.name = placeInputValue;
+  place.url = linkInputValue;
+  addPlace(place);
+  evt.target.closest('form').reset();
+
+  const currentPopup = evt.currentTarget.closest('.popup');
+  closePopup(currentPopup);
+}
+popupPlaceSaveButton.addEventListener('click', handleAddPlace);
 
 /**
  * Add places from file 'cards.js'
