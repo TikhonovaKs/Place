@@ -1,10 +1,13 @@
 # Project: Web service "Place"
 
-## Обзор
+## Review
+* Link to GitHub Pages
 * Introduction
 * Layout
 * JavaScript
-* Link to GitHub Pages
+
+### Link to GitHub Pages:
+* https://tikhonovaks.github.io/Place/
 
 ### Introduction
 'Place' is an interactive page with the ability to post photos
@@ -41,6 +44,3 @@ Deleting a card
 Validation of the form "Edit profile" and "New location"
 * all fields are required;
 * Use standard browser error texts.
-
-### Link to GitHub Pages:
-* https://tikhonovaks.github.io/Place/
